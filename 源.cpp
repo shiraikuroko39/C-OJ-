@@ -3,17 +3,18 @@
 
 int main()
 {
-	int a, x;
-	scanf("%d", &a);
-	x = a;
-	for (int i = 2;i < a+1;i++)
-	{	
-		while (a% i ==0) 
-		{ 
-			a = a / i;
-			if (a != 1) { printf("%d*", i); }
-			else { printf("%d", i); }
+	int n, a, b, c;
+	scanf("%d", &n);
+	for (a = 0;a < 10;a++)
+	{
+		for (b = 0;b < 10;b++)
+		{
+			for (c = 0;c < 10;c++)
+			{
+				if (a * 100 + b * 10 + c + c * 100 + b * 10 + a == n) { printf("%d %d %d\n", a, b, c); }
+			}
 		}
 	}
+	
 	return 0;
 }
