@@ -32,16 +32,17 @@ int main() {
 		else { ji[y] = s[i];y++; }
 	}
 
-	for (int i = 0;i < x;i++)
+	int first = 1;
+	for (int i=0;i < x;i++)
 	{
-		printf("%d ", ou[i]);
-	}
-	for (int i = 0;i < y;i++)
-	{
-		if (i > 0) { printf(" "); }
-		printf("%d", ji[i]);
+		if (first==1) { printf("%d", ou[i]);first = 0; }
+		else { printf(" %d", ou[i]);}
 	}
 
-
+	for (int i=0;i < y;i++)
+	{
+		if (first==1) { printf("%d", ji[i]); first = 0; }
+		else { printf(" %d", ji[i]); }
+	}
 	return 0;
 }
