@@ -1,26 +1,47 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 
-int s[15] = {0};
-int sa[15] = { 0 };
+int s[105] = { 0 };
+int ou[105] = { 0 };
+int ji[105] = { 0 };
 int main() {
-	int n;
+	int n, x = 0, y = 0;
 	scanf("%d", &n);
 	for (int i = 0;i < n;i++)
 	{
 		scanf("%d", &s[i]);
 	}
 
+
 	for (int i = 0;i < n;i++)
 	{
-		sa[i]=s[n - 1 - i];
+		for (int j = 0;j < n - 1 - i;j++)
+		{
+			if (s[j] < s[j + 1])
+			{
+				int temp = s[j];
+				s[j] = s[j + 1];
+				s[j + 1] = temp;
+			}
+		}
 	}
 
-	for (int i = 0;i <n;i++)
+	for (int i = 0;i < n;i++)
 	{
-		if (i >0) { printf(" "); }
-		printf("%d", sa[i]);
+		if (s[i] % 2 == 0) { ou[x] = s[i];x++; }
+		else { ji[y] = s[i];y++; }
 	}
+
+	for (int i = 0;i < x;i++)
+	{
+		printf("%d ", ou[i]);
+	}
+	for (int i = 0;i < y;i++)
+	{
+		if (i > 0) { printf(" "); }
+		printf("%d", ji[i]);
+	}
+
 
 	return 0;
 }
