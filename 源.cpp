@@ -1,50 +1,39 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
+#include<math.h>
 
-int s[1005] = { 0 };
-int a[1005] = { 0 };
 int main() {
-	int n, x = 0;
-	scanf("%d", &n);
-	for (int i = 0;i < n;i++)
-	{
-		scanf("%d", &s[i]);
-	}
+	long long int N, nmax = 0, n = 0, begin, end, N1;
+	scanf("%lld", &N);N1 = N;
 
-
-	int flag = 1;
-	for (int i = 0;i < n;i++)
+	for (long long int i = 2;i <= N/i;i++)
 	{
-		for (int j = 0;j < i;j++)
+		long long int j = i;
+		while (N1 % j == 0)
 		{
-			if (s[i] == s[j]) { flag = 0; }
+			N1 = N1 / j;
+			j++;
+			n++;
 		}
-
-		if (flag == 1) { a[x] = s[i];x++; }
-
-		flag = 1;
+		if (n > nmax) { nmax = n;begin = i;end = i + nmax - 1; }
+		n = 0;
+		N1 = N;
 	}
 
-	for (int i = 0;i < x;i++)
-	{
-		for (int j = 0;j < x - 1 - i;j++)
-		{
-			if (a[j] > a[j + 1])
-			{
-				int t = a[j];
-				a[j] = a[j + 1];
-				a[j + 1] = t;
-			}
-		}
-	}
 
-	for (int i = 0;i < x;i++)
-	{
-		if (i > 0) { printf(" "); }
-		printf("%d", a[i]);
-	}
+
 	
-
+	if (nmax == 0) { printf("%d\n", 1); printf("%lld", N); }
+	else {
+		printf("%lld\n", nmax);
+		for (long long int i = begin;i <= end;i++)
+		{
+			if (i > begin) { printf("*"); }
+			printf("%lld", i);
+		}
+	}
 
 	return 0;
 }
+
+
