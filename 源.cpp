@@ -2,47 +2,32 @@
 #include<stdio.h>
 
 int s[105] = { 0 };
-int ou[105] = { 0 };
-int ji[105] = { 0 };
 int main() {
-	int n, x = 0, y = 0;
+	int n, m;
 	scanf("%d", &n);
 	for (int i = 0;i < n;i++)
 	{
 		scanf("%d", &s[i]);
 	}
+	scanf("%d", &s[n]);
 
-
-	for (int i = 0;i < n;i++)
-	{
-		for (int j = 0;j < n - 1 - i;j++)
+	for (int i = 0;i < n + 1;i++) {
+		for (int j=0;j < n - i;j++)
 		{
-			if (s[j] < s[j + 1])
+			if (s[j] > s[j + 1])
 			{
-				int temp = s[j];
+				int t = s[j];
 				s[j] = s[j + 1];
-				s[j + 1] = temp;
+				s[j + 1] = t;
 			}
 		}
 	}
 
-	for (int i = 0;i < n;i++)
-	{
-		if (s[i] % 2 == 0) { ou[x] = s[i];x++; }
-		else { ji[y] = s[i];y++; }
+
+	for (int i = 0;i < n + 1;i++) {
+		if (i > 0) { printf(" "); }
+		printf("%d", s[i]);
 	}
 
-	int first = 1;
-	for (int i=0;i < x;i++)
-	{
-		if (first==1) { printf("%d", ou[i]);first = 0; }
-		else { printf(" %d", ou[i]);}
-	}
-
-	for (int i=0;i < y;i++)
-	{
-		if (first==1) { printf("%d", ji[i]); first = 0; }
-		else { printf(" %d", ji[i]); }
-	}
 	return 0;
 }
